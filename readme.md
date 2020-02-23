@@ -1,6 +1,27 @@
 # Zeit Next.js Learning Result
 
 [https://nextjs.org/learn/basics/getting-started](https://nextjs.org/learn/basics/getting-started)
+### Linking Pages
+```javascript
+import Link from 'next/link';
+
+const linkStyle = {
+  marginRight: 15
+};
+
+const Header = () => (
+  <div>
+    <Link href="/">
+      <a style={linkStyle}>Home</a>
+    </Link>
+    <Link href="/about">
+      <a style={linkStyle}>About</a>
+    </Link>
+  </div>
+);
+
+export default Header;
+```
 
 ### useRouter
 * We import and use the useRouter function from next/router which will return the Next.js router object.
@@ -14,3 +35,17 @@ import { useRouter } from 'next/router';
 const router = useRouter();
 <h1>{router.query.title}</h1> // Deploy apps with Zeit
 ```
+
+### Dynamic Routing 
+The `[id]` handles all routes that come after `/p/`. <br><br>
+When creating the dynamic route we added `id `between the brackets `([])`. This is the name of the query param received by the page, so for `/p/hello-nextjs` the `query` object will have `{ id: 'hello-nextjs'}`, and we can access it with useRouter().
+```javascript
+const PostLink = props => (
+  <li>
+    <Link href="/p/[id]" as={`/p/${props.id}`}>
+      <a>{props.id}</a>
+    </Link>
+  </li>
+);
+```
+In the `<Link>` element, the `href` prop is now the path of the page in the `pages` folder and `as` is the URL to show in URL bar of the browser.
