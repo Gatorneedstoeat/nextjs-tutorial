@@ -1,12 +1,11 @@
 import Layout from '../components/MyLayout';
 
-
-const About = () => {
+ const Index = () => {
     return(
         <Layout>
-            <p>This is the about page</p>
+            <p>Hello Next.js</p>
         </Layout>
-    )
+    );
 }
 
-export default About;
+export default Index;
