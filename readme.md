@@ -55,3 +55,34 @@ First of all we need to install isomorphic-unfetch. That's the library we are go
 ```javascript
 npm install --save isomorphic-unfetch
 ```
+
+### Context Object
+```javascript
+Post.getInitialProps = async function(context) {
+  const { id } = context.query;
+  const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
+  const show = await res.json();
+
+  console.log(`Fetched show: ${show.name}`);
+
+  return { show };
+};
+```
+The first argument of the function is the **context** object. It has a `query` object that we can use to fetch information.
+
+In our example, we picked the show ID from `query` and used it to fetch the show data from the TVMaze API.
+
+Using the destructuring assignment of `{ id }` we get the id query `?id=757`
+
+#### The above snippet returns the intial prop of `show` to the following function:
+```javascript
+const Post = props => {
+    return (
+        <Layout>
+            <h1>{props.show.name}</h1>
+            <p>{props.show.summary.replace(/<[/]?[pb]>/g, '')}</p>
+            {props.show.image ? <img src={props.show.image.medium} /> : null}
+        </Layout>
+    );
+}
+```
