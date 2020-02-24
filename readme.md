@@ -86,3 +86,57 @@ const Post = props => {
     );
 }
 ```
+
+### Stying Components
+Adding a style jsx element to a component will allow you to style that component. Next.js comes preloaded with a CSS in JS framework called styled-jsx, specifically designed to make your life easier. It allows you to write familiar CSS rules for your components; rules will have no impact on anything other than the components (not even child components). **That means, your CSS rules are scoped.**
+```javascript
+<style jsx>{`
+        h1,
+        a {
+          font-family: 'Arial';
+        }
+
+        ul {
+          padding: 0;
+        }
+
+        li {
+          list-style: none;
+          margin: 5px 0;
+        }
+
+        a {
+          text-decoration: none;
+          color: blue;
+        }
+
+        a:hover {
+          opacity: 0.6;
+        }
+      `}</style>
+```
+Consequently, there are a bunch of practical issues to consider with traditional CSS-file-based styling (especially with SSR), so we suggest avoiding this method when styling for Next.js.
+
+#### Global Styles
+```javascript
+ <style jsx global>{`
+        .markdown {
+          font-family: 'Arial';
+        }
+
+        .markdown a {
+          text-decoration: none;
+          color: blue;
+        }
+
+        .markdown a:hover {
+          opacity: 0.6;
+        }
+
+        .markdown h3 {
+          margin: 0;
+          padding: 0;
+          text-transform: uppercase;
+        }
+      `}</style>
+```
