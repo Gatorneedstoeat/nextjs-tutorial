@@ -49,3 +49,9 @@ const PostLink = props => (
 );
 ```
 In the `<Link>` element, the `href` prop is now the path of the page in the `pages` folder and `as` is the URL to show in URL bar of the browser.
+
+### Fetching Data for Pages
+First of all we need to install isomorphic-unfetch. That's the library we are going to use to fetch data. It's a simple implementation of the browser fetch API, but works both in client and server environments.
+```javascript
+npm install --save isomorphic-unfetch
+```
